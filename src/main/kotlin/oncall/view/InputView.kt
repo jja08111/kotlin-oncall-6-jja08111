@@ -25,4 +25,11 @@ class InputView {
         val rawNames = line.split(",")
         return rawNames.map { Name(it) }
     }
+
+    fun readRestDayWorkingPeopleNames(): List<Name> {
+        print("휴일 비상 근무 순번대로 사원 닉네임을 입력하세요> ")
+        val line = Console.readLine()
+        val rawNames = line.split(",")
+        return rawNames.map { Name(it) }
+    }
 }

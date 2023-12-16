@@ -2,6 +2,7 @@ package oncall.controller
 
 import oncall.model.TargetDate
 import oncall.model.WorkingGroup
+import oncall.model.WorkingGroupTeam
 import oncall.view.InputView
 import oncall.view.OutputView
 
@@ -15,11 +16,17 @@ class OnCallController(
         return readTargetDate()
     }
 
-    private fun inputWeekdayWorkingGroup(): WorkingGroup = inputUntilValid(
+    private fun inputWorkingGroupTeam(): WorkingGroupTeam = inputUntilValid(
         onInvalid = outputView::printInvalidInputError
     ) {
-        val names = readWeekdayWorkingPeopleNames()
-        return WorkingGroup(people = names)
+        val weekdayNames = readWeekdayWorkingPeopleNames()
+        val weekdayWorkingGroup = WorkingGroup(people = weekdayNames)
+        val restDayNames = readRestDayWorkingPeopleNames()
+        val restDayWorkingGroup = WorkingGroup(people = restDayNames)
+        return WorkingGroupTeam(
+            weekdayGroup = weekdayWorkingGroup,
+            restDayGroup = restDayWorkingGroup
+        )
     }
 
     private inline fun <T> inputUntilValid(onInvalid: () -> Unit, block: InputView.() -> T): T {
@@ -34,7 +41,7 @@ class OnCallController(
 
     fun run() {
         val targetDate = inputTargetDate()
-        val weekdayWorkingGroup = inputWeekdayWorkingGroup()
-        println(weekdayWorkingGroup)
+        val team = inputWorkingGroupTeam()
+        println(team)
     }
 }

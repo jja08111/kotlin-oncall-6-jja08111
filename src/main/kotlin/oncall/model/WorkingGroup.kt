@@ -8,9 +8,16 @@ class WorkingGroup(
         requireUnique(people)
     }
 
+    val size: Int
+        get() = people.size
+
     private fun requireUnique(people: List<Name>) {
         val uniquePeople = people.toSet()
         require(uniquePeople.size == people.size)
+    }
+
+    fun containsAll(other: WorkingGroup): Boolean {
+        return people.containsAll(other.people)
     }
 
     companion object {
