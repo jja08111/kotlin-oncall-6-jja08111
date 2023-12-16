@@ -9,24 +9,23 @@ class WorkingPersonPicker(
     private val waitingPeople: Queue<Person> = ArrayDeque()
     private var index = 0
 
-    private fun moveIndexToNext() {
+    private fun next(): Person {
+        val person = workingGroup[index]
         index++
         if (index >= workingGroup.size) {
             index = 0
         }
+        return person
     }
 
     fun pick(lastPerson: Person? = null): Person {
         if (waitingPeople.isNotEmpty()) {
             return waitingPeople.poll()
         }
-        val person = workingGroup[index]
-        moveIndexToNext()
+        val person = next()
         if (lastPerson == person) {
             waitingPeople.add(person)
-            val nextPerson = workingGroup[index]
-            moveIndexToNext()
-            return nextPerson
+            return next()
         }
         return person
     }
