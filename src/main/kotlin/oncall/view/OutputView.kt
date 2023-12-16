@@ -1,21 +1,21 @@
 package oncall.view
 
+import oncall.model.Date
 import oncall.model.Person
-import oncall.model.TargetDate
 import oncall.model.Weekday
 import oncall.util.isHoliday
 
 class OutputView {
-    fun printWorkingSheet(sheet: List<Person>, targetDate: TargetDate) {
-        val month = targetDate.month
-        var weekday = targetDate.weekday
-        var day = 1
+    fun printWorkingSheet(sheet: List<Person>, targetDate: Date) {
+        var currentDate = targetDate
         sheet.forEach { person ->
+            val weekday = currentDate.weekday
+            val month = currentDate.month
+            val day = currentDate.day
             val shouldContainRestDayLabel = weekday.isWeekday && isHoliday(month, day)
             val restDayLabel = if (shouldContainRestDayLabel) "(휴일)" else ""
             println("${month.number}월 ${day}일 ${weekday.koreanLabel}$restDayLabel ${person.name}")
-            weekday = weekday.next()
-            day++
+            currentDate = currentDate.next()
         }
     }
 

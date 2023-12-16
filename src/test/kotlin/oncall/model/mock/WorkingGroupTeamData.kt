@@ -1,12 +1,12 @@
 package oncall.model.mock
 
+import oncall.model.Date
 import oncall.model.Month
 import oncall.model.Person
-import oncall.model.TargetDate
 import oncall.model.Weekday
 import oncall.model.WorkingGroup
 
-val targetDate1 = TargetDate(Month(5), Weekday.Monday)
+val targetDate1 = Date(Month(5), weekday = Weekday.Monday)
 val weekday1 = WorkingGroup(
     listOf(
         Person("준팍"),

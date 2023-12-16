@@ -1,6 +1,6 @@
 package oncall.controller
 
-import oncall.model.TargetDate
+import oncall.model.Date
 import oncall.model.WorkingGroup
 import oncall.model.WorkingGroupTeam
 import oncall.view.InputView
@@ -10,7 +10,7 @@ class OnCallController(
     private val inputView: InputView = InputView(),
     private val outputView: OutputView = OutputView()
 ) {
-    private fun inputTargetDate(): TargetDate = inputUntilValid(
+    private fun inputTargetDate(): Date = inputUntilValid(
         onInvalid = outputView::printInvalidInputError
     ) {
         return readTargetDate()

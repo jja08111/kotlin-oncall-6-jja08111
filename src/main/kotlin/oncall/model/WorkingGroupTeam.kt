@@ -1,7 +1,5 @@
 package oncall.model
 
-import oncall.util.isHoliday
-
 class WorkingGroupTeam(
     private val weekdayGroup: WorkingGroup,
     private val restDayGroup: WorkingGroup
@@ -11,24 +9,22 @@ class WorkingGroupTeam(
         require(weekdayGroup.size == restDayGroup.size)
     }
 
-    fun createSheet(targetDate: TargetDate): List<Person> {
+    fun createSheet(startDate: Date): List<Person> {
+        require(startDate.day == 1)
         val weekdayWorkingPersonPicker = WorkingPersonPicker(weekdayGroup)
         val restDayWorkingPersonPicker = WorkingPersonPicker(restDayGroup)
-        val month = targetDate.month
-        var currentWeekday = targetDate.weekday
-        var currentDay = 1
+        val month = startDate.month
+        var currentDate = startDate
         val sheet = mutableListOf<Person>()
         while (sheet.size < month.daySize) {
-            val isRestDay = currentWeekday.isWeekend || isHoliday(month, currentDay)
-            currentWeekday = currentWeekday.next()
-            currentDay++
             val lastPerson = sheet.lastOrNull()
-            val person = if (isRestDay) {
+            val person = if (currentDate.isRestDay) {
                 restDayWorkingPersonPicker.pick(lastPerson)
             } else {
                 weekdayWorkingPersonPicker.pick(lastPerson)
             }
             sheet.add(person)
+            currentDate = currentDate.next()
         }
         return sheet
     }
