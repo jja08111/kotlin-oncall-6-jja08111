@@ -1,13 +1,12 @@
 package oncall.view
 
-import oncall.model.Date
-import oncall.model.Person
+import oncall.model.MonthlyWorkingSheet
 import oncall.model.Weekday
 import oncall.util.isHoliday
 
 class OutputView {
-    fun printWorkingSheet(sheet: List<Person>, targetDate: Date) {
-        var currentDate = targetDate
+    fun printWorkingSheet(sheet: MonthlyWorkingSheet) {
+        var currentDate = sheet.date
         sheet.forEach { person ->
             val weekday = currentDate.weekday
             val month = currentDate.month

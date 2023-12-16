@@ -43,6 +43,6 @@ class OnCallController(
         val targetDate = inputTargetDate()
         val team = inputWorkingGroupTeam()
         val sheet = team.createSheet(targetDate)
-        outputView.printWorkingSheet(sheet, targetDate)
+        outputView.printWorkingSheet(sheet)
     }
 }
