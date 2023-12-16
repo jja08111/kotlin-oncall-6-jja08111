@@ -14,7 +14,7 @@ class InputView {
         require(splittedLine.size == 2)
         val monthInput = splittedLine[0].toIntOrNull() ?: throw IllegalArgumentException()
         val weekdayInput = splittedLine[1].trim()
-        val month = Month(number = monthInput)
+        val month = Month(value = monthInput)
         val weekday = Weekday.createOrThrow(weekdayInput)
         return Date(month = month, weekday = weekday)
     }
