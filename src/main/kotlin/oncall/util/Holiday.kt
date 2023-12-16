@@ -1,7 +1,8 @@
 package oncall.util
 
-import oncall.model.Date
 import oncall.model.Month
+
+private data class Date(val month: Month, val day: Int)
 
 private val holidays = listOf(
     Date(month = Month(1), day = 1),
