@@ -11,7 +11,7 @@ class OutputView {
         var weekday = targetDate.weekday
         var day = 1
         sheet.forEach { person ->
-            val shouldContainRestDayLabel = !weekday.isWeekend && isHoliday(month, day)
+            val shouldContainRestDayLabel = weekday.isWeekday && isHoliday(month, day)
             val restDayLabel = if (shouldContainRestDayLabel) "(휴일)" else ""
             println("${month.number}월 ${day}일 ${weekday.koreanLabel}$restDayLabel ${person.name}")
             weekday = weekday.next()

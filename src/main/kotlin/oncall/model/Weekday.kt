@@ -15,6 +15,9 @@ enum class Weekday {
             else -> false
         }
 
+    val isWeekday: Boolean
+        get() = !isWeekend
+
     fun next(): Weekday {
         return when (this) {
             Sunday -> Monday
