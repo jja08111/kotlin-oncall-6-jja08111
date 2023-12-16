@@ -16,7 +16,7 @@ class WorkingPersonPicker(
         }
     }
 
-    fun pick(lastPerson: Person?): Person {
+    fun pick(lastPerson: Person? = null): Person {
         if (waitingPeople.isNotEmpty()) {
             return waitingPeople.poll()
         }
