@@ -1,5 +1,6 @@
 package oncall.model
 
+// TODO: Person으로 재명명
 @JvmInline
 value class Name(val name: String) {
     init {
