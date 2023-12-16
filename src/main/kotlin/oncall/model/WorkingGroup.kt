@@ -20,6 +20,10 @@ class WorkingGroup(
         return people.containsAll(other.people)
     }
 
+    operator fun get(index: Int): Name {
+        return people[index]
+    }
+
     companion object {
         private val WORKING_PEOPLE_RANGE = 5..35
     }

@@ -9,6 +9,24 @@ enum class Weekday {
     Friday,
     Saturday;
 
+    val isWeekend: Boolean
+        get() = when (this) {
+            Sunday, Saturday -> true
+            else -> false
+        }
+
+    fun next(): Weekday {
+        return when (this) {
+            Sunday -> Monday
+            Monday -> Tuesday
+            Tuesday -> Wednesday
+            Wednesday -> Thursday
+            Thursday -> Friday
+            Friday -> Saturday
+            Saturday -> Sunday
+        }
+    }
+
     companion object {
         fun createOrThrow(koreanWeekdayName: String): Weekday {
             return when (koreanWeekdayName) {

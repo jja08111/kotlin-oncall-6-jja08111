@@ -42,6 +42,6 @@ class OnCallController(
     fun run() {
         val targetDate = inputTargetDate()
         val team = inputWorkingGroupTeam()
-        println(team)
+        val sheet = team.createSheet(targetDate)
     }
 }
