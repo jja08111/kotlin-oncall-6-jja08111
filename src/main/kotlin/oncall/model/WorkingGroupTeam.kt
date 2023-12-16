@@ -13,16 +13,16 @@ class WorkingGroupTeam(
         require(weekdayGroup.size == restDayGroup.size)
     }
 
-    fun createSheet(targetDate: TargetDate): List<Name> {
+    fun createSheet(targetDate: TargetDate): List<Person> {
         val month = targetDate.month
         val daySize = month.daySize
-        val weekDayQueue: Queue<Name> = ArrayDeque()
-        val restDayQueue: Queue<Name> = ArrayDeque()
+        val weekDayQueue: Queue<Person> = ArrayDeque()
+        val restDayQueue: Queue<Person> = ArrayDeque()
         var currentWeekday = targetDate.weekday
         var currentDay = 1
         var weekdayGroupIndex = 0
         var restDayGroupIndex = 0
-        val sheet = mutableListOf<Name>()
+        val sheet = mutableListOf<Person>()
         val moveNextRestDayGroupIndex = {
             restDayGroupIndex++
             if (restDayGroupIndex >= restDayGroup.size) {
@@ -50,12 +50,12 @@ class WorkingGroupTeam(
                     sheet.add(person)
                     continue
                 }
-                val person: Name = restDayGroup[restDayGroupIndex]
+                val person: Person = restDayGroup[restDayGroupIndex]
                 moveNextRestDayGroupIndex()
-                val lastPerson: Name? = sheet.lastOrNull()
+                val lastPerson: Person? = sheet.lastOrNull()
                 if (lastPerson == person) {
                     restDayQueue.add(person)
-                    val nextPerson: Name = restDayGroup[restDayGroupIndex]
+                    val nextPerson: Person = restDayGroup[restDayGroupIndex]
                     moveNextRestDayGroupIndex()
                     sheet.add(nextPerson)
                     continue
@@ -69,12 +69,12 @@ class WorkingGroupTeam(
                 sheet.add(person)
                 continue
             }
-            val person: Name = weekdayGroup[weekdayGroupIndex]
+            val person: Person = weekdayGroup[weekdayGroupIndex]
             moveNextWeekdayGroupIndex()
-            val lastPerson: Name? = sheet.lastOrNull()
+            val lastPerson: Person? = sheet.lastOrNull()
             if (lastPerson == person) {
                 weekDayQueue.add(person)
-                val nextPerson: Name = weekdayGroup[weekdayGroupIndex]
+                val nextPerson: Person = weekdayGroup[weekdayGroupIndex]
                 moveNextWeekdayGroupIndex()
                 sheet.add(nextPerson)
                 continue

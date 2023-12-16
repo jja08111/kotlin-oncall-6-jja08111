@@ -1,7 +1,7 @@
 package oncall.model
 
 class WorkingGroup(
-    private val people: List<Name>
+    private val people: List<Person>
 ) {
     init {
         require(people.size in WORKING_PEOPLE_RANGE)
@@ -11,7 +11,7 @@ class WorkingGroup(
     val size: Int
         get() = people.size
 
-    private fun requireUnique(people: List<Name>) {
+    private fun requireUnique(people: List<Person>) {
         val uniquePeople = people.toSet()
         require(uniquePeople.size == people.size)
     }
@@ -20,7 +20,7 @@ class WorkingGroup(
         return people.containsAll(other.people)
     }
 
-    operator fun get(index: Int): Name {
+    operator fun get(index: Int): Person {
         return people[index]
     }
 

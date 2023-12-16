@@ -2,7 +2,7 @@ package oncall.view
 
 import camp.nextstep.edu.missionutils.Console
 import oncall.model.Month
-import oncall.model.Name
+import oncall.model.Person
 import oncall.model.TargetDate
 import oncall.model.Weekday
 
@@ -19,17 +19,17 @@ class InputView {
         return TargetDate(month = month, weekday = weekday)
     }
 
-    fun readWeekdayWorkingPeopleNames(): List<Name> {
+    fun readWeekdayWorkingPeopleNames(): List<Person> {
         print("평일 비상 근무 순번대로 사원 닉네임을 입력하세요> ")
         val line = Console.readLine()
         val rawNames = line.split(",")
-        return rawNames.map { Name(it) }
+        return rawNames.map { Person(it) }
     }
 
-    fun readRestDayWorkingPeopleNames(): List<Name> {
+    fun readRestDayWorkingPeopleNames(): List<Person> {
         print("휴일 비상 근무 순번대로 사원 닉네임을 입력하세요> ")
         val line = Console.readLine()
         val rawNames = line.split(",")
-        return rawNames.map { Name(it) }
+        return rawNames.map { Person(it) }
     }
 }
