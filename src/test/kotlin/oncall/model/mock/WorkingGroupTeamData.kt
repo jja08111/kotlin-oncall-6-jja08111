@@ -7,7 +7,7 @@ import oncall.model.Weekday
 import oncall.model.WorkingGroup
 
 val targetDate1 = Date(Month(5), weekday = Weekday.Monday)
-val weekday1 = WorkingGroup(
+val weekdayGroup1 = WorkingGroup(
     listOf(
         Person("준팍"),
         Person("도밥"),
@@ -22,7 +22,7 @@ val weekday1 = WorkingGroup(
         Person("도리")
     )
 )
-val restDay1 = WorkingGroup(
+val restDayGroup1 = WorkingGroup(
     listOf(
         Person("수아"),
         Person("루루"),

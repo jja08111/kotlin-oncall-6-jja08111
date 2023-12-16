@@ -1,9 +1,9 @@
 package oncall.model
 
-import oncall.model.mock.restDay1
+import oncall.model.mock.restDayGroup1
 import oncall.model.mock.sheetResult1
 import oncall.model.mock.targetDate1
-import oncall.model.mock.weekday1
+import oncall.model.mock.weekdayGroup1
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -32,7 +32,7 @@ class WorkingGroupTeamTest {
 
     @Test
     fun `근무표 생성 테스트`() {
-        val team = WorkingGroupTeam(weekday1, restDay1)
+        val team = WorkingGroupTeam(weekdayGroup1, restDayGroup1)
 
         val sheet = team.createSheet(targetDate1)
 
